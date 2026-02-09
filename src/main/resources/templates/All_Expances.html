@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>All Expenses</title>
+</head>
+<body>
+
+<h1>Expense Tracker</h1>
+
+<a href="/addExpense">Add New Expense</a>
+
+<br><br>
+
+<table border="1">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Title</th>
+            <th>Amount</th>
+            <th>Date</th>
+            <th>Description</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr th:each="expense : ${expenses}">
+            <td th:text="${expense.id}">1</td>
+            <td th:text="${expense.title}">Grocery</td>
+            <td th:text="${expense.amount}">500</td>
+            <td th:text="${expense.date}">2026-02-09</td>
+            <td th:text="${expense.description}">Description</td>
+            <td>
+                <a th:href="@{/editExpense/{id}(id=${expense.id})}">Edit</a> |
+                <a th:href="@{/deleteExpense/{id}(id=${expense.id})}" 
+                   onclick="return confirm('Delete?')">Delete</a>
+                   
+                                     
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+</body>
+</html>

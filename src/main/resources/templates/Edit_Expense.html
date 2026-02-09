@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Edit Expense</title>
+</head>
+<body>
+
+<h2>Edit Expense</h2>
+
+<form th:action="@{/updateExpense/{id}(id=${expense.id})}" method="POST" th:object="${expense}">
+    
+    <label>Title:</label>
+    <input type="text" th:field="*{title}" required>
+    <br><br>
+    
+    <label>Amount:</label>
+    <input type="number" th:field="*{amount}" step="0.01" required>
+    <br><br>
+    
+    <label>Date:</label>
+    <input type="date" th:field="*{date}" required>
+    <br><br>
+    
+    <label>Description:</label>
+    <textarea th:field="*{description}"></textarea>
+    <br><br>
+    
+    <button type="submit">Update</button>
+</form>
+
+<br>
+<a href="/allExpances">Back to All Expenses</a>
+
+</body>
+</html>
