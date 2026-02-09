@@ -29,7 +29,7 @@ public class User_Ex_Controller {
 	@Autowired
 	private User_Ex_repo user_repo;
 
-    // Show Login Page
+    // showLoginPage
     @GetMapping("/login")
     public String loginPage() {
         return "login";
@@ -49,14 +49,14 @@ public class User_Ex_Controller {
         }
     }
 
-    // Show Registration Page
+    // showRegistrationPage
     @GetMapping("/register")
     public String registerPage(Model model) {
         model.addAttribute("user", new User_Ex());
         return "register";
     }
 
-    // Save User
+    // saveUser
     @PostMapping("/register")
     public String registerUser(User_Ex user) {
         user_repo.save(user);
@@ -64,14 +64,15 @@ public class User_Ex_Controller {
     }
 	
 	
-	// Show all expenses
+	// showAllExpenses
     @GetMapping("/allExpances")
     public String allExpenses(Model model) {
         List<Expence> expenses = expence_ser.getAllExpenses();
         model.addAttribute("expenses", expenses);
         return "All_Expances";
     }
-    
+
+	//addNewExpenceData
     @GetMapping("/addExpense")
     public String showAddExpenseForm(Model model) {
         Expence expense = new Expence();
@@ -85,7 +86,8 @@ public class User_Ex_Controller {
         expence_ser.saveExpense(expense);
         return "redirect:/allExpances";
     }
-    
+
+	//editDataOfExpences
     @GetMapping("/editExpense/{id}")
     public String showEditForm(@PathVariable int id, Model model) {
         Expence expense = expence_ser.getExpenseById(id)
@@ -95,13 +97,13 @@ public class User_Ex_Controller {
     }
     
     @PostMapping("/updateExpense/{id}")
-    public String updateExpense(@PathVariable int id, 
-                               @ModelAttribute("expense") Expence expense) {
+    public String updateExpense(@PathVariable int id, @ModelAttribute("expense") Expence expense) {
         expense.setId(id);
         expence_ser.saveExpense(expense);
         return "redirect:/allExpances";
     }
-    
+
+	//deleteExpencen
     @GetMapping("/deleteExpense/{id}")
     public String deleteExpense(@PathVariable int id) {
         expence_ser.deleteExpense(id);
@@ -111,7 +113,7 @@ public class User_Ex_Controller {
 }
 
 
-//  
+ 
 
 
 
