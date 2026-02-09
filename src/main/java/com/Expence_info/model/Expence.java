@@ -13,7 +13,8 @@ import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "expense_Records")
-public class Expence {
+public class Expence 
+{
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -31,12 +32,11 @@ public class Expence {
     @JoinColumn(name = "user_id")
     private User_Ex user;
     
-    // Constructors
+    
     public Expence() {
     }
     
-    public Expence(int id, String title, Double amount,
-                   LocalDate date, String description, User_Ex user) {
+    public Expence(int id, String title, Double amount,LocalDate date, String description, User_Ex user) {
         this.id = id;
         this.title = title;
         this.amount = amount;
